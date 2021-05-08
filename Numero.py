@@ -2,16 +2,12 @@ import random
 import json
 import datetime
 
-
-
+#Abre a lista de resultados que é usada mais tarde
 with open("score_list.json", "r") as score_file:
     score_list = json.loads(score_file.read())
 
-
-
-
-
-def jogar():
+#Função que define o jogo
+def jogar(): 
     secret = random.randint(1, 10)
     attempts = 0
     tent_erradas = []
@@ -44,6 +40,7 @@ def jogar():
             tent_erradas.append(guess)
             print("Tenta um número maior")
 
+#Função que dá o high score
 def ranking():
     high_score=sorted(score_list, key=lambda i: i["Tentativas"])
 
@@ -52,11 +49,10 @@ def ranking():
     for score_dict in high_score[:10]:
         print("O Jogador {0} conseguiu acertar em {1} tentativas. O número era o {3} e os números que ele errou foram os seguintes {4}".format(score_dict.get("jogador"), str(score_dict.get("tentativas")), score_dict.get("data"), score_dict.get("segredo"), score_dict.get("errados")))
 
-menu = True
 
+menu = True #serve para parar o ciclo do jogo
 
-print("Bem vindo ao número virtual")
-
+print("Bem vindo ao número virtual") 
 while menu:
     escolha = input("Pretendes jogar (A), ver os nossos 10 melhores jogadores (B) ou sair (C)? ")
 
